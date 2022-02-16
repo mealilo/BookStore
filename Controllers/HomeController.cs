@@ -23,12 +23,12 @@ namespace Mission7.Controllers
         public IActionResult Index(int pageNum = 1)
         {
 
-            int pageSize = 5;
+            int pageSize = 10;
 
             var data = new BooksViewModel
             {
                 Books = repo.Books
-                .OrderBy(p => p.Title)
+                //.OrderBy(p => p.Title)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
