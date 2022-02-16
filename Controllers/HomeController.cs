@@ -15,6 +15,11 @@ namespace Mission7.Controllers
 
         private IBookRepository repo;
 
+        public HomeController(IBookRepository temp)
+        {
+            repo = temp;
+        }
+
         public IActionResult Index(int pageNum = 1)
         {
 
