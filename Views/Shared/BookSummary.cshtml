@@ -16,29 +16,34 @@
 
 
 
-            <div class="row">
+        <div class="d-flex justify-content-center row">
 
-                <div class="col-3">
-                    <p>
-                         Classification: @Model.Classification
-                    </p>
-                    <p>
-                       Publisher: @Model.Publisher
-                    </p>
-                    <p>
-                       Category:  @Model.Category
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        Page Count: @Model.PageCount
-                    </p>
-                    <p>
-                        Price: $@Model.Price
-                    </p>
-                </div>
+            <div class="col-3">
+                <p>
+                    Classification: @Model.Classification
+                </p>
+                <p>
+                    Publisher: @Model.Publisher
+                </p>
+                <p>
+                    Category:  @Model.Category
+                </p>
             </div>
-          
+            <div>
+                <p>
+                    Page Count: @Model.PageCount
+                </p>
+                <p>
+                    Price: $@Model.Price
+                </p>
+            </div>
+        </div>
+        <form class="d-flex justify-content-center m-2" method="post" asp-page="/Cart">
+            <input type="hidden" asp-for="@Model.Isbn" />
+            <span class="card-text">
+                <button type="submit" class="btn btn-success float-end">Add To cart</button>
+            </span>
+        </form>
 
 
     </div>
