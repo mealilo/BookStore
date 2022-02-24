@@ -8,41 +8,49 @@
 
 
 <h1 class="text-black-50">Welcome to your new Home of books! Find my favorite books!</h1>
-    <div class="p-4 rounded-lg" style="background-color: #cecece">
-        <table class="table table-responsive-lg table-bordered table-hover table-striped table-dark">
-
-            <thead>
-                <tr>
+<div class="p-4 rounded-lg" style="background-color: #cecece">
 
 
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Publisher</th>
-                    <th>ISBN</th>
-                    <th>Classification</th>
-                    <th>Category</th>
-                    <th>Page Count</th>
-                    <th>Price</th>
+    @foreach (Book book in Model.Books)
+    {
+        <partial name="BookSummary" model="book" />
+    }
 
-                </tr>
-            </thead>
+    @*Old Code, not in use anymore but keep!*@
+    @*<table class="table table-responsive-lg table-bordered table-hover table-striped table-dark">
 
-            @foreach (Book book in Model.Books)
-            {
-                <tr>
-                    <td>@book.BookId</td>
-                    <td>@book.Title</td>
-                    <td>@book.Author</td>
-                    <td>@book.Publisher</td>
-                    <td>@book.Isbn</td>
-                    <td>@book.Classification</td>
-                    <td>@book.Category</td>
-                    <td>@book.PageCount</td>
-                    <td>@book.Price</td>
-                </tr>
+        <thead>
+            <tr>
 
-            }
-        </table>
-    </div>
+
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>ISBN</th>
+                <th>Classification</th>
+                <th>Category</th>
+                <th>Page Count</th>
+                <th>Price</th>
+
+            </tr>
+        </thead>
+
+        @foreach (Book book in Model.Books)
+        {
+            <tr>
+                <td>@book.BookId</td>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Publisher</td>
+                <td>@book.Isbn</td>
+                <td>@book.Classification</td>
+                <td>@book.Category</td>
+                <td>@book.PageCount</td>
+                <td>@book.Price</td>
+            </tr>
+
+        }
+    </table>*@
+</div>
     <div class="d-flex justify-content-center" page-model="@Model.PageInfo" page-action="Index"></div>
