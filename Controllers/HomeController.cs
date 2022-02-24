@@ -20,7 +20,7 @@ namespace Mission7.Controllers
             repo = temp;
         }
 
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index(string bookType,int pageNum = 1)
         {
 
             int pageSize = 10;
@@ -28,13 +28,17 @@ namespace Mission7.Controllers
             var data = new BooksViewModel
             {
                 Books = repo.Books
+                .Where(p => p.Category == bookType || bookType == null)
                 //.OrderBy(p => p.Title)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumBooks = repo.Books.Count(),
+
+                    // If  There is a booktype/.category submitted, then make the correct number of pages
+                    TotalNumBooks = (bookType == null ? repo.Books.Count():
+                    repo.Books.Where(p => p.Category == bookType).Count()),
                     BooksPerPage = pageSize,
                     CurrentPage = pageNum
                 }
