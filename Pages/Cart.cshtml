@@ -6,43 +6,60 @@
 }
 
 
+<!DOCTYPE html>
 
-<div class="container bg-light">
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container bg-light">
 
 
-    <h2>Your cart:</h2>
+        <h2>Your cart:</h2>
 
-    <table class="table table-responsive-lg table-bordered table-hover table-striped table-dark">
+        <table class="table table-responsive-lg table-bordered table-hover table-striped table-dark">
 
             <thead>
                 <tr>
 
 
                     <th>Title</th>
+                    <th>Quantity</th>
                     <th>Price</th>
+                    <th>Subtotal</th>
 
 
                 </tr>
             </thead>
 
-            @*@foreach (Book book in Model.Ca)
+            @foreach (var book in Model.cart.Items)
             {
                 <tr>
-                    <td>@book.BookId</td>
-                    <td>@book.Title</td>
-                    <td>@book.Author</td>
-                    <td>@book.Publisher</td>
-                    <td>@book.Isbn</td>
-                    <td>@book.Classification</td>
-                    <td>@book.Category</td>
-                    <td>@book.PageCount</td>
-                    <td>@book.Price</td>
+                    <td>@book.Book.Title</td>
+                    <td>@book.Quantity</td>
+                    <td>@book.Cost</td>
+                    <td>@(book.Quantity * book.Cost)</td>
                 </tr>
 
-            }*@
+            }
+
+
         </table>
 
-    <div>
-        @*<a class="btn btn-primary" href="@Model.ReturnURl">Continue Donating</a>*@
+
+        <div class="d-flex m-auto justify-content-center">
+            <h4>Total: @Model.cart.CalculateSubTotal().ToString("c")</h4>
+            <br />
+            <h4>Books Sold Today: @Model.cart.CalculateAmountBooks().ToString()</h4>
+        </div>
+
+        <div  class="d-flex justify-content-center">
+            <a class="btn btn-primary" href="@Model.ReturnURL">Continue Shopping</a>
+        </div>
     </div>
-</div>
+</body>
+</html>

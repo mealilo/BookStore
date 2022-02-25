@@ -53,8 +53,8 @@ namespace Mission7.Models
             public int LineID { get; set; }
             public Book Book { get; set; }
 
-        public int Quantity { get; set; }
-        public double Cost { get; set; }
+            public int Quantity { get; set; }
+            public double Cost { get; set; }
 
     }
 
