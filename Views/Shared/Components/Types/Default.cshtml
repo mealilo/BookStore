@@ -13,12 +13,12 @@
 
 <div class="d-grid gap-1 w-100">
 
-    <a asp-controller="Home" asp-action="Index" asp-route-bookType="" asp-route-pageNum="" class="btn btn-secondary">All books</a>
+    <a asp-controller="Home" asp-action="Index" asp-route-bookType="" asp-route-pageNum="" class="btn btn-secondary w-100">All books</a>
 
     @foreach (string type in Model)
     {
         <br />
-        <a asp-controller="Home" asp-action="Index" asp-route-bookType="@type" asp-route-pageNum="1" class="btn @(ViewBag.SelectedType == type ? " btn-primary" : "btn-outline-secondary" )">@type</a>
+        <a asp-controller="Home" asp-action="Index" asp-route-bookType="@type" asp-route-pageNum="1" class="btn w-100 @(ViewBag.SelectedType == type ? " btn-primary" : "btn-secondary" )">@type</a>
     }
 
 </div>

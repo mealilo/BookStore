@@ -9,9 +9,9 @@
 <div class="rounded bg-light m-2 mt-4 border-dark">
 
 
-    <div class="d-flex flex-column justify-content-center">
+    <div class="d-flex flex-column m-2 justify-content-center">
         <div class="d-flex justify-content-center mt-3">
-            <h3>@Model.Title - @Model.Author (@Model.Isbn)</h3>
+            <h3>@Model.Title - @Model.Author</h3>
         </div>
 
 
@@ -35,6 +35,9 @@
                 </p>
                 <p>
                     Price: $@Model.Price
+                </p>
+                <p>
+                    ISBN:  @Model.Isbn
                 </p>
             </div>
         </div>
