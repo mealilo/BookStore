@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace Mission7.Models.ViewModels
 {
+
+
+    //This page gets the number of books per page, and then calcualtes the total # of pages to be created
     public class PageInfo
     {
         public int BooksPerPage { get; set; }
