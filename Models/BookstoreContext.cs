@@ -19,6 +19,8 @@ namespace Mission7.Models
 
         public virtual DbSet<Book> Books { get; set; }
 
+        public DbSet<Donation> Donations { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
