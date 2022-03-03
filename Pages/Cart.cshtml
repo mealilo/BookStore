@@ -31,18 +31,26 @@
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Subtotal</th>
+                    <th>Remove</th>
 
 
                 </tr>
             </thead>
 
-            @foreach (var book in Model.cart.Items)
+            @foreach (var book in Model.Cart.Items)
             {
                 <tr>
                     <td>@book.Book.Title</td>
                     <td>@book.Quantity</td>
                     <td>@book.Cost</td>
                     <td>@(book.Quantity * book.Cost)</td>
+                    <td class="text-center">
+                        <form method="post" asp-page-handler="Remove">
+                            <input type="hidden" name="BookId" value="@book.Book.BookId" />
+                            <input type="hidden" name="returnURL" value="@Model.ReturnURL">
+                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        </form>
+                    </td>
                 </tr>
 
             }
@@ -52,9 +60,9 @@
 
 
         <div class="d-flex m-auto justify-content-center">
-            <h4>Total: @Model.cart.CalculateSubTotal().ToString("c")</h4>
+            <h4>Total: @Model.Cart.CalculateSubTotal().ToString("c")</h4>
             <br />
-            <h4>Books Sold Today: @Model.cart.CalculateAmountBooks().ToString()</h4>
+            <h4>Books Sold Today: @Model.Cart.CalculateAmountBooks().ToString()</h4>
         </div>
 
         <div  class="d-flex justify-content-center">

@@ -20,23 +20,29 @@ namespace Mission7.Pages
             repo = temp;
         }
 
-        public Cart cart { get; set; }
+        public Cart Cart { get; set; }
         public string ReturnURL { get; set; }
 
         public void OnGet(string returnURL)
         {
             ReturnURL = returnURL ?? "/";
-            cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            Cart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
         }
 
-        public IActionResult OnPost(string isbn, string returnURL)
+        public IActionResult OnPost(int BookId, string returnURL)
         {
-            Book book = repo.Books.FirstOrDefault(x => x.Isbn == isbn);
+            Book book = repo.Books.FirstOrDefault(x => x.BookId == BookId);
 
-            cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-            cart.AddItem(book, 1);
+            Cart.AddItem(book, 1);
 
-            HttpContext.Session.SetJson("cart", cart);
+            return RedirectToPage(new { ReturnURL = returnURL });
+        }
+
+        public IActionResult OnPostRemove(int BookId, string returnURL)
+        {
+            Book book = Cart.Items.First(x => x.Book.BookId == BookId).Book;
+            Cart.RemoveItem(book);
+
             return RedirectToPage(new { ReturnURL = returnURL });
         }
     }

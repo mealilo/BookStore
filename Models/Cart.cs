@@ -11,9 +11,9 @@ namespace Mission7.Models
     {
         public List<ShoppingCartItem> Items { get; set; } = new List<ShoppingCartItem>();
 
-        public void AddItem(Book book, int qty)
+        public virtual void AddItem(Book book, int qty)
         {
-            ShoppingCartItem Line = Items.Where(p => p.Book.Isbn == book.Isbn).FirstOrDefault();
+            ShoppingCartItem Line = Items.Where(p => p.Book.BookId == book.BookId).FirstOrDefault();
 
 
 
@@ -32,7 +32,15 @@ namespace Mission7.Models
                 Line.Cost += book.Price;
             }
         }
+        public virtual void RemoveItem (Book book)
+        {
+            Items.RemoveAll(x => x.Book.BookId == book.BookId);
+        }
 
+        public virtual void ClearCart()
+        {
+            Items.Clear();
+        }
         public double CalculateSubTotal()
         {
             double sum = Items.Sum(x => x.Cost);

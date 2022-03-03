@@ -42,7 +42,7 @@
             </div>
         </div>
         <form class="d-flex justify-content-center m-2" method="post" asp-page="/Cart">
-            <input type="hidden" asp-for="@Model.Isbn" />
+            <input type="hidden" asp-for="@Model.BookId" />
             <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
             <span class="card-text">
                 <button type="submit" class="btn btn-success float-end">Add To cart</button>
