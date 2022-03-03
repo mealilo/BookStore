@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Mission7.Models
 {
 
-   
+
     public class Cart
     {
         public List<ShoppingCartItem> Items { get; set; } = new List<ShoppingCartItem>();
@@ -56,17 +56,14 @@ namespace Mission7.Models
             return sum;
         }
     }
-
-        public class ShoppingCartItem
-        {
-
-            [Key]
-            public int LineID { get; set; }
-            public Book Book { get; set; }
-
-            public int Quantity { get; set; }
-            public double Cost { get; set; }
-
+    public class ShoppingCartItem
+    {
+        [Key]
+        public int LineID { get; set; }
+        public Book Book { get; set; }
+        public int Quantity { get; set; }
+        public double Cost { get; set; }
     }
+
 
 }
