@@ -36,6 +36,9 @@ namespace Mission7
 
             services.AddDistributedMemoryCache();
             services.AddSession();
+            services.AddScoped<Cart>(x => SessionCart.GetCart(x));
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,9 +58,9 @@ namespace Mission7
             app.UseEndpoints(endpoints =>
             {
             // if both a page num and book type are specified
-            endpoints.MapControllerRoute("typepage",
-                "{bookType}/{pageNum}",
-                new { Controller = "Home", action = "Index" });
+            //endpoints.MapControllerRoute("typepage",
+            //    "{bookType}/{pageNum}",
+            //    new { Controller = "Home", action = "Index" });
 
             // if only page is specified
             endpoints.MapControllerRoute(
@@ -72,10 +75,11 @@ namespace Mission7
                     new { Controller = "Home", action = "Index", pageNum = 1 });
 
 
-                //endpoints.mapcontrollerroute(
-                //    name: "default",
-                //    pattern: "{controller=home}/{action=index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=home}/{action=index}/{id?}");
 
+                endpoints.MapDefaultControllerRoute();
 
                 endpoints.MapRazorPages();
             });
