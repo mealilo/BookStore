@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - Home</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/lib/fontawesome-free-6.0.0-web/css/all.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -24,21 +24,13 @@
                         </li>
 
                     </ul>
+                    <div class="col-6 text-right">
+                        <vc:cart-summary />
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-
-    <div class="bg-dark text-white p-2">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col navbar-brand">SPORTS STORE</div>
-                <div class="col-6 text-right">
-                    <vc:cart-summary />
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row m-1 p-1">
         <div id="types" class="col-3">
             <vc:types></vc:types>
