@@ -27,6 +27,7 @@ namespace Mission7.Pages
         public void OnGet(string returnURL)
         {
             ReturnURL = returnURL ?? "/";
+            Cart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
         }
 
         public IActionResult OnPost(int BookId, string returnURL)

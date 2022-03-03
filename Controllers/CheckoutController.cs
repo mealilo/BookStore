@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Mission7.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace Mission7.Controllers
         [HttpGet]
         public IActionResult Checkout()
         {
-            return View(new DonationInfo());
+            return View();
         }
     }
 }
