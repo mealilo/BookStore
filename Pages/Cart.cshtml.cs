@@ -15,10 +15,9 @@ namespace Mission7.Pages
 
         private IBookRepository repo { get; set; }
 
-        public CartModel (IBookRepository temp, Cart c)
+        public CartModel (IBookRepository temp)
         {
             repo = temp;
-            Cart = c;
         }
 
         public Cart Cart { get; set; }
