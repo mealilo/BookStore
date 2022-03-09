@@ -1,0 +1,54 @@
+﻿<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th colspan="5" class="text-center">
+                @TableTitle
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Orders?.Count() > 0)
+        {
+            @foreach (Donation order in Orders)
+            {
+                <tr>
+                    <td>
+                        @order.Name
+                    </td>
+                    <td>@order.Zip</td>
+                    <th>Project</th>
+                    <th>Quantity</th>
+
+                </tr>
+                @foreach (ShoppingCartItem item in order.Lines)
+                {
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>@item.Book.Title</td>
+                        <td>@item.Quantity</td>
+                    </tr>
+                }
+            }
+        }
+
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center"> No Orders</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@code {
+    [Parameter]
+    public string TableTitle { get; set; } = "Orders";
+
+    [Parameter]
+    public IEnumerable<Donation> Orders { get; set; }
+    [Parameter]
+    public string ButtonLabel { get; set; } = "Collected";
+
+    [Parameter]
+    public EventCallback<int> DonationSelected { get; set; }
+}
