@@ -1,9 +1,33 @@
 ﻿@page "/admin/allbooks"
 @page "/admin"
+@inherits OwningComponentBase<IBookRepository>
 
 
 <h3>AllBooks</h3>
-<h1>testing</h1>
+<h1>testing - all books should appear here</h1>
+
+<NavLink class="btn btn-primary" href="/admin/projects/create">Create</NavLink>
 @code {
+    public IBookRepository repo => Service;
+
+    public IEnumerable<Book> AllBooks { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        AllBooks = await repo.Books.ToListAsync();
+    }
+
+    public string GetDetailsUrl(long id) => $"/admin/projects/details/{id}";
+    public string GetEditUrl(long id) => $"/admin/projects/edit/{id}";
+    public async Task RemoveProject(Book b)
+    {
+        repo.DeleteProject(b);
+        await UpdateData();
+    }
 
 }
