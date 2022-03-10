@@ -15,6 +15,8 @@ namespace Mission7.Models
         {
             context = temp;
         }
+
+        //connects lines to the book objects
         public IQueryable<Donation> Donations => context.Donations.Include(x => x.Lines).ThenInclude(x => x.Book);
 
         IQueryable<Donation> IDonationsRepository.Donations { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
