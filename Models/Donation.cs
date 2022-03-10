@@ -41,8 +41,6 @@ namespace Mission7.Models
         [Required(ErrorMessage = "Please enter Country")]
         public string Country { get; set; }
 
-        public bool Annonymous { get; set; }
-
         [BindNever]
         public bool OrderShipped { get; set; }
     }
