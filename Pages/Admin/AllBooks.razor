@@ -3,14 +3,14 @@
 @inherits OwningComponentBase<IBookRepository>
 
 
-<h3>AllBooks</h3>
-<h1>testing - all books should appear here</h1>
+<h3>All Books in Database</h3>
 
-<table class="table table-sm table-striped table-bordered">
+<table class="table table-sm table-striped table-bordered table-hover table-dark">
     <thead>
         <tr>
-            <th>Book ID</th>
-            <th> Title</th>
+            <th colspan="1">Book ID</th>
+            <th colspan="6">Title</th>
+            <th colspan="5">Options</th>
         </tr>
     </thead>
     <tbody>
@@ -20,8 +20,8 @@
             @foreach (Book b in Books)
             {
                 <tr>
-                    <td>@b.BookId</td>
-                    <td>@b.Title</td>
+                    <td colspan="1">@b.BookId</td>
+                    <td colspan="6">@b.Title</td>
 
 
                     <td>
@@ -47,7 +47,7 @@
     </tbody>
 </table>
 
-<NavLink class="btn btn-primary" href="/admin/projects/create">Create</NavLink>
+<NavLink class="btn btn-primary" href="/admin/create">Create</NavLink>
 @code {
     public IBookRepository repo => Service;
 
@@ -63,7 +63,7 @@
         Books = await repo.Books.ToListAsync();
     }
 
-    public string GetDetailsUrl(long id) => $"/admin/projects/details/{id}";
+    public string GetDetailsUrl(long id) => $"/admin/books/details/{id}";
     public string GetEditUrl(long id) => $"/admin/projects/edit/{id}";
     public async Task RemoveBook(Book b)
     {

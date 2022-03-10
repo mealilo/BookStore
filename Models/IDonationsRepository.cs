@@ -7,6 +7,7 @@ namespace Mission7.Models
 {
     public interface IDonationsRepository
     {
+
         public IQueryable<Donation> Donations { get; set; }
         public void SaveDonation(Donation donation);
     }

@@ -1,5 +1,7 @@
 ﻿@inherits LayoutComponentBase
 
+
+@*This is where the layout for all the admin pages is set*@
 <div class="bg-info text-white" p-2>
     <span class="navbar-brand m-lg-2">Bookstore Admin</span>
 
@@ -8,11 +10,13 @@
 
 </div>
 
-<div class="container-fluid">
+<div class="container text-center m-auto">
     <div class="row p-2 d-grid">
         <div class="col-3">
             <NavLink class="btn btn-outline-primary" href="/admin/allbooks" ActiveClass="btn-primary text-white" Match="NavLinkMatch.Prefix">All Books</NavLink>
             <NavLink class="btn btn-outline-primary" href="/admin/orders" ActiveClass="btn btn-primary" Match="NavLinkMatch.Prefix">Orders</NavLink>
+            <NavLink class="btn btn-outline-primary" href="/admin/create" ActiveClass="btn btn-primary" Match="NavLinkMatch.Prefix">Create</NavLink>
+
         </div>
 
         <div class="col">
