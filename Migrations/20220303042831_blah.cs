@@ -2,30 +2,10 @@
 
 namespace Mission7.Migrations
 {
-    public partial class removeanon : Migration
+    public partial class blah : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            //migrationBuilder.CreateTable(
-            //    name: "Books",
-            //    columns: table => new
-            //    {
-            //        BookID = table.Column<int>(type: "INTEGER", nullable: false)
-            //            .Annotation("Sqlite:Autoincrement", true),
-            //        Title = table.Column<string>(type: "TEXT", nullable: false),
-            //        Author = table.Column<string>(type: "TEXT", nullable: false),
-            //        Publisher = table.Column<string>(type: "TEXT", nullable: false),
-            //        ISBN = table.Column<string>(type: "TEXT", nullable: false),
-            //        Classification = table.Column<string>(type: "TEXT", nullable: false),
-            //        Category = table.Column<string>(type: "TEXT", nullable: false),
-            //        PageCount = table.Column<int>(type: "INTEGER", nullable: false),
-            //        Price = table.Column<double>(type: "REAL", nullable: false)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_Books", x => x.BookID);
-            //    });
-
             migrationBuilder.CreateTable(
                 name: "Donations",
                 columns: table => new
@@ -40,7 +20,7 @@ namespace Mission7.Migrations
                     State = table.Column<string>(type: "TEXT", nullable: false),
                     Zip = table.Column<string>(type: "TEXT", nullable: false),
                     Country = table.Column<string>(type: "TEXT", nullable: false),
-                    OrderShipped = table.Column<bool>(type: "INTEGER", nullable: false)
+                    Annonymous = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,12 +56,6 @@ namespace Mission7.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Books_BookID",
-                table: "Books",
-                column: "BookID",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCartItem_BookId",
                 table: "ShoppingCartItem",
                 column: "BookId");
@@ -96,9 +70,6 @@ namespace Mission7.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ShoppingCartItem");
-
-            migrationBuilder.DropTable(
-                name: "Books");
 
             migrationBuilder.DropTable(
                 name: "Donations");
