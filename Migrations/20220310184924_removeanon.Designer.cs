@@ -9,8 +9,8 @@ using Mission7.Models;
 namespace Mission7.Migrations
 {
     [DbContext(typeof(BookstoreContext))]
-    [Migration("20220309184407_donationreceived")]
-    partial class donationreceived
+    [Migration("20220310184924_removeanon")]
+    partial class removeanon
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,9 +80,6 @@ namespace Mission7.Migrations
                     b.Property<string>("AddressLine3")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("Annonymous")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -95,7 +92,7 @@ namespace Mission7.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("PaymentReceived")
+                    b.Property<bool>("OrderShipped")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("State")

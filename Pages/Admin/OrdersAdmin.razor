@@ -1,0 +1,50 @@
+﻿@page "/admin/orders"
+@inherits OwningComponentBase<IDonationsRepository>
+<h3>Orders</h3>
+
+<h3>I should do something!</h3>
+<OrderTable TableTtile="Not Shipped Orders" Donations="UnshippedOrders" ButtonLabel="Ship" DonationSelected="ResetOrder"></OrderTable>
+<OrderTable TableTtile=" Shipped Orders" Donations="ShippedOrders" ButtonLabel="Unship" DonationSelected="ShipOrder"></OrderTable>
+
+
+<button class="btn btn-info" @onclick="@(x => UpdateData())"> Refresh Data</button>
+@code {
+
+
+    IQueryable<Donation> Donations => context.Donations.Include(x => x.Lines).ThenInclude(x => x.Book);
+    private BookstoreContext context;
+    public void EfDonationsRepository(BookstoreContext temp)
+    {
+        context = temp;
+    }
+    public IDonationsRepository repo => Service;
+
+    public IEnumerable<Donation> AllOrders { get; set; }
+    public IEnumerable<Donation> UnshippedOrders { get; set; }
+    public IEnumerable<Donation> ShippedOrders { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        AllOrders = await context.Donations.ToListAsync();
+        UnshippedOrders = AllOrders.Where(x => !x.OrderShipped);
+        ShippedOrders = AllOrders.Where(x => x.OrderShipped);
+
+    }
+
+    public void ShipOrder(int id) => UpdateOrder(id, true);
+
+    public void ResetOrder(int id) => UpdateOrder(id, false);
+
+    private void UpdateOrder(int id, bool shipped)
+    {
+        Donation d = context.Donations.FirstOrDefault(x => x.DonationId == id);
+        d.OrderShipped = shipped;
+        repo.SaveDonation(d);
+    }
+
+}
