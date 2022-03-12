@@ -4,19 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-
-// This is the respository that interacts with the db
 namespace Mission7.Models
 {
-    public class EfDonationsRepository : IDonationsRepository
+    public class EFDonationsRepository : IDonationsRepository
     {
+
         private BookstoreContext context;
-        public EfDonationsRepository(BookstoreContext temp)
+        public EFDonationsRepository(BookstoreContext temp)
         {
             context = temp;
         }
-
-        //connects lines to the book objects
 
         public IQueryable<Donation> Donations => context.Donations.Include(x => x.Lines).ThenInclude(x => x.Book);
 
@@ -24,13 +21,12 @@ namespace Mission7.Models
 
         public void SaveDonation(Donation donation)
         {
-            context.AttachRange(donation.Lines.Select(x => x.Book));
+            throw new NotImplementedException();
+        }
 
-            if (donation.DonationId == 0)
-            {
-                context.Donations.Add(donation);
-            }
-            context.SaveChanges();
+        void IDonationsRepository.SaveDonation(Donation donation)
+        {
+            throw new NotImplementedException();
         }
     }
 }
