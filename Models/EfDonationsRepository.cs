@@ -21,13 +21,12 @@ namespace Mission7.Models
 
         public void SaveDonation(Donation donation)
         {
-            context.AttachRange(donation.Lines.Select(x => x.Book));
+            throw new NotImplementedException();
+        }
 
-            if (donation.DonationId == 0)
-            {
-                context.Donations.Add(donation);
-            }
-            context.SaveChanges();
+        void IDonationsRepository.SaveDonation(Donation donation)
+        {
+            throw new NotImplementedException();
         }
     }
 }
