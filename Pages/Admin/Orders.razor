@@ -9,12 +9,7 @@
 
 <button class="btn btn-info" @onclick="@(x => UpdateData())"> Refresh Data</button>
 @code {
-
-    public void DonationsController(IDonationsRepository temp)
-    {
-        repo = temp;
-    }
-    public IDonationsRepository repo;
+    public IDonationsRepository repo => Service;
 
     public IEnumerable<Donation> AllOrders { get; set; }
     public IEnumerable<Donation> UnshippedOrders { get; set; }
