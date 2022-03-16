@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+
+@model LoginModel
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Book Store</title>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/js/site.js"></script>
+
+</head>
+
+
+
+<body>
+    <div class="bg-dark text-white p-2">
+        <span class="navbar-brand m-1-2">Bookstore Login</span>
+
+    </div>
+    <div class="container w-35 ">
+
+        <div class="bg-dark rounded">
+
+
+            <div class="m-1 p-1">
+                <div class="text-danger" asp-validation-summary="All"></div>
+
+                <form id="login" method="post" asp-controller="Account" asp-action="Login">
+                    <div class="form-group text-center font-weight-bold text-white">
+                        <label asp-for="Username">User Name</label>
+                        <input asp-for="Username" class="form-control" />
+                    </div>
+                    <div class="form-group text-center font-weight-bold text-white">
+                        <label asp-for="Password">Password</label>
+                        <input asp-for="Password" class="form-control" type="password" />
+                    </div>
+
+                    <button onclick="Submit();" class="btn btn-primary btn-block fa-lg gradient-custom-2 m-2 w-25 m-auto" type="button">Log in</button>
+
+                    <input type="hidden" asp-for="ReturnUrl" />
+                </form>
+            </div>
+        </div>
+
+        <h3 class="text-center">
+            Log in Progress:
+
+        </h3>
+        <div class="progress">
+            <div id="loginprogress" class="progress-bar w-0" style="display:none" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    </div>
+</body>
+</html>

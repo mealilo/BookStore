@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Mission7.Models
 {
-    public class IdentitySeedData
+    public static class IdentitySeedData
     {
 
         private const string adminUser = "Admin";
