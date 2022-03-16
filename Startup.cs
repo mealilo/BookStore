@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace Mission7
 {
@@ -30,6 +31,12 @@ namespace Mission7
             services.AddDbContext<BookstoreContext>(options => {
                 options.UseSqlite(Configuration["ConnectionStrings:BookDBConnection"]);
             });
+
+            services.AddDbContext<AppIdentityDBContext>(options =>
+            options.UseSqlite(Configuration["ConnectionStrings:IdentityConnection"]));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDBContext>();
+
 
             services.AddScoped<IBookRepository, EFBookRepository>();
             services.AddScoped<IDonationsRepository, EfDonationsRepository>();
@@ -60,6 +67,11 @@ namespace Mission7
             app.UseSession();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
@@ -92,6 +104,8 @@ namespace Mission7
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
             });
+
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }
